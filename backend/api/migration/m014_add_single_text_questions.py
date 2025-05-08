@@ -1,0 +1,96 @@
+from sqlalchemy.ext.asyncio import AsyncSession
+
+import api.models.flow_page as flow_page_model
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
+def add_single_text_questions(db:AsyncSession):
+  rows = [
+    flow_page_model.SingleTextQuestion(
+      id = 1,
+      title = 'Q1-1_1',
+      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      page_type = "single_text_question",
+      page_group = 1,
+      order = 1,
+      content_id = 7,
+      hint_comment_id = 5,
+      answer_comment_id = 6,
+      origin_content_id = 7,
+      origin_hint_comment_id = 5,
+      origin_answer_comment_id = 6,
+    ),
+    flow_page_model.SingleTextQuestion(
+      id = 2,
+      title = 'Q1-2_1',
+      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      page_type = "single_text_question",
+      page_group = 1,
+      order = 2,
+      content_id = 8,
+      hint_comment_id = 5,
+      answer_comment_id = 6,
+      origin_content_id = 8,
+      origin_hint_comment_id = 5,
+      origin_answer_comment_id = 6,
+    ),
+    flow_page_model.SingleTextQuestion(
+      id = 3,
+      title = 'Q1-3_1',
+      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      page_type = "single_text_question",
+      page_group = 1,
+      order = 3,
+      content_id = 9,
+      hint_comment_id = 5,
+      answer_comment_id = 6,
+      origin_content_id = 9,
+      origin_hint_comment_id = 5,
+      origin_answer_comment_id = 6,
+    ),
+    flow_page_model.SingleTextQuestion(
+      id = 4,
+      title = 'Q1-1_2',
+      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      page_type = "single_text_question",
+      page_group = 2,
+      order = 1,
+      content_id = 10,
+      hint_comment_id = 5,
+      answer_comment_id = 6,
+      origin_content_id = 10,
+      origin_hint_comment_id = 5,
+      origin_answer_comment_id = 6,
+    ),
+    flow_page_model.SingleTextQuestion(
+      id = 5,
+      title = 'Q1-2_2',
+      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      page_type = "single_text_question",
+      page_group = 2,
+      order = 2,
+      content_id = 11,
+      hint_comment_id = 5,
+      answer_comment_id = 6,
+      origin_content_id = 11,
+      origin_hint_comment_id = 5,
+      origin_answer_comment_id = 6,
+    ),
+    flow_page_model.SingleTextQuestion(
+      id = 6,
+      title = 'Q1-3_2',
+      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      page_type = "single_text_question",
+      page_group = 2,
+      order = 3,
+      content_id = 12,
+      hint_comment_id = 5,
+      answer_comment_id = 6,
+      origin_content_id = 12,
+      origin_hint_comment_id = 5,
+      origin_answer_comment_id = 6,
+    )
+  ]
+  for row in rows:
+    db.add(row)
+  db.flush()
