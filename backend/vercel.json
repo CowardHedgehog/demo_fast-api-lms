@@ -3,9 +3,7 @@
   "functions": {
     "api/main.py": {
       "maxDuration": 60,
-      "includeFiles": [
-        "alembic/versions/**"
-      ]
+      "includeFiles": "alembic/versions/**"
     }
   },
   "routes": [
