@@ -1,14 +1,17 @@
 {
   "version": 2,
+  "functions": {
+    "api/main.py": {
+      "maxDuration": 60,
+      "includeFiles": [
+        "alembic/versions/**"
+      ]
+    }
+  },
   "routes": [
     {
       "src": "/(.*)",
       "dest": "api/main.py"
     }
-  ],
-  "functions": {
-    "api/main.py": {
-      "maxDuration": 60
-    }
-  }
+  ]
 }
