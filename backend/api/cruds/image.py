@@ -9,7 +9,12 @@ import api.models.image as image_model
 
 import api.schemas.image as image_schema
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
+#Backend URL
+BACKEND_URL = os.getenv('BACKEND_URL')
 
 async def select_image(db:AsyncSession, image_id: int) -> image_schema.ImageResponse:
     result: Result = await(
@@ -73,10 +78,10 @@ def replace_images_with_options(content: str, image_map: dict) -> str:
 
     画像URLは、`[image/画像名]`の形式で指定されていると仮定しています。
     widthやheightのオプション指定が可能
-    [image/img1.png] -> <img src='http://localhost:8000/get_image/1' />
-    [image/img2.png width=400] -> <img src='http://localhost:8000/get_image/2' width='400' />
-    [image/img3.png height=300] -> <img src='http://localhost:8000/get_image/3' height='300' />
-    [image/img4.png width=400 height=300] -> <img src='http://localhost:8000/get_image/4' width='400' height='300' />
+    [image/img1.png] -> <img src='{BACKEND_URL}/get_image/1' />
+    [image/img2.png width=400] -> <img src='{BACKEND_URL}/get_image/2' width='400' />
+    [image/img3.png height=300] -> <img src='{BACKEND_URL}/get_image/3' height='300' />
+    [image/img4.png width=400 height=300] -> <img src='{BACKEND_URL}/get_image/4' width='400' height='300' />
 
     Args:
         content (str): 置換対象のコンテンツ
@@ -103,7 +108,7 @@ def replace_images_with_options(content: str, image_map: dict) -> str:
         width_attr = f" width='{width}'" if width else ""
         height_attr = f" height='{height}'" if height else ""
 
-        return f"<img src='http://localhost:8000/get_image/{image_id}'{width_attr}{height_attr} />"
+        return f"<img src='{BACKEND_URL}/get_image/{image_id}'{width_attr}{height_attr} />"
 
     return re.sub(pattern, repl, content)
     

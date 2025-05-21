@@ -4,12 +4,12 @@ import api.models.flow_page as flow_page_model
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-def add_single_text_questions(db:AsyncSession):
+async def add_single_text_questions(db:AsyncSession):
   rows = [
     flow_page_model.SingleTextQuestion(
       id = 1,
       title = 'Q1-1_1',
-      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      created = datetime.now(),
       page_type = "single_text_question",
       page_group = 1,
       order = 1,
@@ -23,7 +23,7 @@ def add_single_text_questions(db:AsyncSession):
     flow_page_model.SingleTextQuestion(
       id = 2,
       title = 'Q1-2_1',
-      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      created = datetime.now(),
       page_type = "single_text_question",
       page_group = 1,
       order = 2,
@@ -37,7 +37,7 @@ def add_single_text_questions(db:AsyncSession):
     flow_page_model.SingleTextQuestion(
       id = 3,
       title = 'Q1-3_1',
-      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      created = datetime.now(),
       page_type = "single_text_question",
       page_group = 1,
       order = 3,
@@ -51,7 +51,7 @@ def add_single_text_questions(db:AsyncSession):
     flow_page_model.SingleTextQuestion(
       id = 4,
       title = 'Q1-1_2',
-      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      created = datetime.now(),
       page_type = "single_text_question",
       page_group = 2,
       order = 1,
@@ -65,7 +65,7 @@ def add_single_text_questions(db:AsyncSession):
     flow_page_model.SingleTextQuestion(
       id = 5,
       title = 'Q1-2_2',
-      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      created = datetime.now(),
       page_type = "single_text_question",
       page_group = 2,
       order = 2,
@@ -79,7 +79,7 @@ def add_single_text_questions(db:AsyncSession):
     flow_page_model.SingleTextQuestion(
       id = 6,
       title = 'Q1-3_2',
-      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      created = datetime.now(),
       page_type = "single_text_question",
       page_group = 2,
       order = 3,
@@ -91,6 +91,5 @@ def add_single_text_questions(db:AsyncSession):
       origin_answer_comment_id = 6,
     )
   ]
-  for row in rows:
-    db.add(row)
-  db.flush()
+  db.add_all(rows)
+  await db.flush()

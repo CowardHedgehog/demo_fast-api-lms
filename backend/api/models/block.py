@@ -1,5 +1,5 @@
 # ブロック情報（コース内の要素）を示すテーブル群
-from sqlalchemy import Column, Integer, ForeignKey, Boolean, DATETIME
+from sqlalchemy import Column, Integer, ForeignKey, Boolean, DateTime as DATETIME
 
 from api.db import Base
 

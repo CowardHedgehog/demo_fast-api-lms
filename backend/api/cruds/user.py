@@ -274,7 +274,7 @@ async def get_user_ability(db: AsyncSession, week_id: int, flow_id: int, user_id
 
 async def add_user(db: AsyncSession, add_user_request: user_schema.AddUserRequest):
   hashed_password = get_password_hash(add_user_request.password)
-  created = datetime.datetime.now(ZoneInfo('Asia/Tokyo'))
+  created = datetime.datetime.now()
   kind_dict = dict(await select_user_kind(db))
   kind_id = kind_dict.get(add_user_request.kind_name)
   new_user = user_schema.UserCreate(username=add_user_request.username, email=add_user_request.email, hashed_password=hashed_password, user_kind_id=kind_id, created=created)
@@ -287,7 +287,7 @@ async def add_user(db: AsyncSession, add_user_request: user_schema.AddUserReques
 
 async def add_users(db: AsyncSession, add_user_request: List[user_schema.AddUserRequest]):
   added_users = []
-  created = datetime.datetime.now(ZoneInfo('Asia/Tokyo'))
+  created = datetime.datetime.now()
   kind_dict = dict(await select_user_kind(db))
   for add_user in add_user_request:
     hashed_password = get_password_hash(add_user.password)

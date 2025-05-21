@@ -3,7 +3,7 @@ import datetime
 
 import api.models.flow_page as flow_page_model
 
-def add_choice_question_choice(db:AsyncSession):
+async def add_choice_question_choice(db:AsyncSession):
   rows = [
     flow_page_model.ChoiceQuestionChoice(
       id = "choice_1",
@@ -30,7 +30,6 @@ def add_choice_question_choice(db:AsyncSession):
       content_id = 20
     ),
   ]
-  for row in rows:
-      db.add(row)
-  db.flush()
+  db.add_all(rows)
+  await db.flush()
       

@@ -1,5 +1,5 @@
 # コース情報を示すテーブル群
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DATETIME, TEXT
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DateTime as DATETIME, TEXT
 from sqlalchemy.orm import relationship
 
 import datetime
@@ -17,7 +17,7 @@ class Course(Base):
   weeks = Column(Integer, nullable=False, comment='週数')
   start_date_time = Column(DATETIME, nullable=False, comment='開始日時')
   end_date_time = Column(DATETIME, nullable=False, comment='終了日時')
-  created = Column(DATETIME,default=datetime.datetime.now(ZoneInfo('Asia/Tokyo')), nullable=False, comment='作成日時')
+  created = Column(DATETIME,default=datetime.datetime.now(), nullable=False, comment='作成日時')
   created_by = Column(Integer, ForeignKey('users.id', ondelete="CASCADE"), nullable=False, comment='作成者')
   is_active = Column(Boolean, default=True, nullable=False, comment='コース有効化')
   

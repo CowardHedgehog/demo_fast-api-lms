@@ -4,12 +4,12 @@ from zoneinfo import ZoneInfo
 
 import api.models.flow_page as flow_page_model
 
-def add_multiple_text_question(db:AsyncSession):
+async def add_multiple_text_question(db:AsyncSession):
   rows = [
     flow_page_model.MultipleTextQuestion(
       id = 7,
       title = "Q2-1",
-      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      created = datetime.now(),
       page_type = "multiple_text_question",
       page_group = 3,
       order = 1,
@@ -23,7 +23,6 @@ def add_multiple_text_question(db:AsyncSession):
       origin_answer_column_content_id = 14
     )
   ]
-  for row in rows:
-    db.add(row)
-  db.flush()
+  db.add_all(rows)
+  await db.flush()
         

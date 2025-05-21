@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 import api.models.flow as flow_model
 from datetime import datetime
 
-def add_flow_rule(db:AsyncSession):
+async def add_flow_rule(db:AsyncSession):
   rows = [
     flow_model.FlowRule(
       flow_id = 1, 
@@ -18,6 +18,5 @@ def add_flow_rule(db:AsyncSession):
       always = True
     ),
   ]
-  for row in rows:
-    db.add(row)
-  db.flush()
+  db.add_all(rows)
+  await db.flush()

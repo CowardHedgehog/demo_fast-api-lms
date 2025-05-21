@@ -38,7 +38,12 @@ import api.cruds.update_week as update_week_crud
 import api.cruds.image as image_crud
 import api.cruds.create_week as create_week_crud
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
+#Backend URL
+BACKEND_URL = os.getenv('BACKEND_URL')
 
 # フロー情報を取得
 async def select_flow(db: AsyncSession, flow_id: int) -> flow_schema.FlowResponse:
@@ -850,7 +855,7 @@ async def flow_session_finished(db: AsyncSession, user_id: int,subject_id : int)
 
 
 async def insert_flow_session(db: AsyncSession, flow_id: int, user_id: int) -> flow_schema.StartFlowSessionResponse:
-  new_flow_session = flow_schema.FlowSessionCreate(user_id=user_id, flow_id=flow_id, start_date_time=datetime.now(ZoneInfo('Asia/Tokyo')))
+  new_flow_session = flow_schema.FlowSessionCreate(user_id=user_id, flow_id=flow_id, start_date_time=datetime.now())
   row = flow_session_model.FlowSession(**new_flow_session.dict())
   db.add(row)
   await db.commit()
@@ -882,7 +887,7 @@ async def insert_blank_answer(db: AsyncSession, answer_blank_request: List[flow_
         flowpage_id=flowpage_id,
         blank_id=answer_blank.blank_id,
         answer=answer_blank.answer,
-        created=datetime.now(ZoneInfo('Asia/Tokyo'))
+        created=datetime.now()
     )
     print(f'new_flow_session_blank_answer:{new_flow_session_blank_answer}')
     # 受け取った問題IDを元に解答を登録する処理
@@ -964,7 +969,7 @@ async def insert_blank_answer(db: AsyncSession, answer_blank_request: List[flow_
   return response
 
 async def update_to_finish_flow_session(db: AsyncSession,user_id:int, flow_session_id: int) -> flow_schema.FlowSessionResponse:
-  finish_date_time = datetime.now(ZoneInfo('Asia/Tokyo'))
+  finish_date_time = datetime.now()
   result: Result = await(
     db.execute(
       update(flow_session_model.FlowSession)
@@ -1031,7 +1036,7 @@ async def update_question_content(db: AsyncSession, user: user_schema.User, upda
   images = image_result.all()
   for image in images:
     image_id, image_name = image
-    content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage](http://localhost:8000/get_image/{image_id})", content)
+    content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage]({BACKEND_URL}/get_image/{image_id})", content)
   image_name_to_id = {name: id for id, name in images}
   content = image_crud.replace_images_with_options(content, image_name_to_id)
   await update_week_crud.update_content(db=db, id=update_question_request.content_id, content=content)
@@ -1231,12 +1236,12 @@ async def register_flowpage(db: AsyncSession, flowpage: flow_schema.RegisterFlow
   answer_content = flowpage.answer_comment
   images = await image_crud.get_images(db=db, week_id=flowpage.week_id)
   for image_id, image_name in [(img["id"], img["name"]) for img in images]:
-    flow_content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage](http://localhost:8000/get_image/{image_id})", flow_content)
-    flow_content = re.sub(f"\[\s*image/{image_name}\s*\]", f"<img src='http://localhost:8000/get_image/{image_id}' width='300' />", flow_content)
-    hint_content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage](http://localhost:8000/get_image/{image_id})", hint_content)
-    hint_content = re.sub(f"\[\s*image/{image_name}\s*\]", f"<img src='http://localhost:8000/get_image/{image_id}' width='300' />", hint_content)
-    answer_content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage](http://localhost:8000/get_image/{image_id})", answer_content)
-    answer_content = re.sub(f"\[\s*image/{image_name}\s*\]", f"<img src='http://localhost:8000/get_image/{image_id}' width='300' />", answer_content)
+    flow_content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage]({BACKEND_URL}/get_image/{image_id})", flow_content)
+    flow_content = re.sub(f"\[\s*image/{image_name}\s*\]", f"<img src='{BACKEND_URL}/get_image/{image_id}' width='300' />", flow_content)
+    hint_content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage]({BACKEND_URL}/get_image/{image_id})", hint_content)
+    hint_content = re.sub(f"\[\s*image/{image_name}\s*\]", f"<img src='{BACKEND_URL}/get_image/{image_id}' width='300' />", hint_content)
+    answer_content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage]({BACKEND_URL}/get_image/{image_id})", answer_content)
+    answer_content = re.sub(f"\[\s*image/{image_name}\s*\]", f"<img src='{BACKEND_URL}/get_image/{image_id}' width='300' />", answer_content)
   origin_content_id = await insert_content(db=db, content=flowpage.content)
   content_id = await insert_content(db=db, content=flow_content)
   origin_hint_comment_id = await insert_content(db=db, content=flowpage.hint_comment)

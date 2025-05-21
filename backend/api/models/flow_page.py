@@ -1,5 +1,5 @@
 # フローページ情報を示すテーブル群
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DATETIME, TIME
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DateTime as DATETIME, TIME
 from sqlalchemy.orm import relationship
 
 from datetime import datetime, timezone
@@ -13,7 +13,7 @@ class FlowPage(Base):
   
   id = Column(Integer, primary_key=True, index=True, comment='問題ID')
   title = Column(String(128), nullable=False, comment='問題名')
-  created = Column(DATETIME, default=datetime.now(ZoneInfo('Asia/Tokyo')))
+  created = Column(DATETIME, default=datetime.now())
   page_type = Column(String(128), nullable=False, comment='ページ種別')
   page_group = Column(Integer, ForeignKey('page_groups.id', ondelete='CASCADE'), nullable=False, comment='ページグループ')
   order = Column(Integer, nullable=False, comment='ページグループ内での順番')

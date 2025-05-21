@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 import api.models.flow as flow_model
 from datetime import datetime
 
-def add_flow(db:AsyncSession):
+async def add_flow(db:AsyncSession):
   rows = [
     flow_model.Flow(
       id = 1, 
@@ -24,6 +24,5 @@ def add_flow(db:AsyncSession):
       completion_page_content_id = 4,
     )
   ]
-  for row in rows:
-    db.add(row)
-  db.flush()
+  db.add_all(rows)
+  await db.flush()

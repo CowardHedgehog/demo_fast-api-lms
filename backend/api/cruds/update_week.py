@@ -27,6 +27,13 @@ import api.schemas.week as week_schema
 import api.cruds.user as user_crud
 import api.cruds.image as image_crud
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+#Backend URL
+BACKEND_URL = os.getenv('BACKEND_URL')
+
 async def update_content(db: AsyncSession, id: int, content: str):
   update_result: Result = await(
     db.execute(
@@ -69,7 +76,7 @@ async def update_week_content(db: AsyncSession, course_id: int, week_id: int, co
   print(images)
   for image in images:
     image_id, image_name = image
-    content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage](http://localhost:8000/get_image/{image_id})", content)
+    content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage]({BACKEND_URL}/get_image/{image_id})", content)
   image_name_to_id = {name: id for id, name in images}
   content = image_crud.replace_images_with_options(content, image_name_to_id)
     

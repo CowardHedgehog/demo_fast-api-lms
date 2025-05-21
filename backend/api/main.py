@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from api.routers import auth, user, course, week, flow, image, subject, announcement
 from starlette.middleware.cors import CORSMiddleware
+import os
 
 tags_metadata = [
   {
@@ -28,11 +29,7 @@ tags_metadata = [
 app = FastAPI()
 
 origins = [
-    "http://localhost:8080",
-    "http://localhost:8000",
-    "http://localhost",
-    "http://127.0.0.1:8080",
-    "http://127.0.0.1:8000"
+  os.getenv("FRONTEND_URL"),
 ]
 app.add_middleware(
     CORSMiddleware,

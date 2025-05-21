@@ -89,7 +89,7 @@ async def insert_grant_course_teacher(db: AsyncSession, user: user_schema.User, 
   if success == True:
     try:
       for user in register_grant_course_request.user_list:
-        row = course_model.CourseGrant(user_id=user.id, course_id=register_grant_course_request.course_id, start_date_time=datetime.datetime.now(ZoneInfo('Asia/Tokyo')), end_date_time=datetime.datetime.now(ZoneInfo('Asia/Tokyo')) + datetime.timedelta(days=365), read_answer=user.read_answer, update_answer=user.update_answer, delete_answer=user.delete_answer)
+        row = course_model.CourseGrant(user_id=user.id, course_id=register_grant_course_request.course_id, start_date_time=datetime.datetime.now(), end_date_time=datetime.datetime.now() + datetime.timedelta(days=365), read_answer=user.read_answer, update_answer=user.update_answer, delete_answer=user.delete_answer)
         db.add(row)
         await db.flush()
       await db.commit()

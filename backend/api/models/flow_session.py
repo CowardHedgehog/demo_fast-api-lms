@@ -1,5 +1,5 @@
 # フローセッション情報を示すテーブル群
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DATETIME, TIME, Float, TEXT
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DateTime as DATETIME, TIME, Float, TEXT
 from sqlalchemy.orm import relationship
 
 from datetime import datetime, timezone
@@ -38,4 +38,4 @@ class FlowSessionBlankAnswers(Base):
   flowpage_id = Column(Integer, ForeignKey('flowpages.id', ondelete="CASCADE"), nullable=False)
   blank_id = Column(Integer, ForeignKey('blanks.id', ondelete="CASCADE"), nullable=False)
   answer = Column(TEXT, comment='ユーザが解答した内容')
-  created = Column(DATETIME, default=datetime.now(ZoneInfo('Asia/Tokyo')), nullable=False, comment='解答日時')
+  created = Column(DATETIME, default=datetime.now(), nullable=False, comment='解答日時')

@@ -41,7 +41,7 @@ async def create_announcement(
             start_date_time=announcement.start_date_time,
             end_date_time=announcement.end_date_time,
             sender=user.username,
-            send_date_time=datetime.now(ZoneInfo('Asia/Tokyo')),
+            send_date_time=datetime.now(),
             user_kind_id=announcement.user_kind_id
         )
         
@@ -84,7 +84,7 @@ async def get_announcements(
     limit: int = 10,
     offset: int = 0
 ) -> announcement_schema.GetAnnouncementsResponse:
-    current_time = datetime.now(ZoneInfo('Asia/Tokyo'))
+    current_time = datetime.now()
     
     result: Result = await db.execute(
         select(announcement_model.Announcement)
@@ -135,7 +135,7 @@ async def mark_as_read(
             )
             .values(
                 is_read=True,
-                read_date_time=datetime.now(ZoneInfo('Asia/Tokyo'))
+                read_date_time=datetime.now()
             )
         )
         if result.rowcount == 0:

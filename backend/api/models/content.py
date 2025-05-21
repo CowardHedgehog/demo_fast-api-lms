@@ -1,5 +1,5 @@
 # yamlで書かれたコンテンツを格納するテーブル
-from sqlalchemy import Column, Integer, DATETIME, TEXT
+from sqlalchemy import Column, Integer, DateTime as DATETIME, TEXT
 from datetime import datetime
 
 from api.db import Base

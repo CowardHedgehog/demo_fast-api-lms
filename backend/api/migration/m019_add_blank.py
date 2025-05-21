@@ -4,7 +4,7 @@ import api.models.flow_page as flow_page_model
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-def add_blank(db:AsyncSession):
+async def add_blank(db:AsyncSession):
   rows = [
     flow_page_model.Blank(
       id = 1,
@@ -57,6 +57,5 @@ def add_blank(db:AsyncSession):
       flowpage_id = 9
     )
   ]
-  for row in rows:
-    db.add(row)
-  db.flush()
+  db.add_all(rows)
+  await db.flush()

@@ -1,5 +1,5 @@
 # 科目情報を示すテーブル
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DATETIME, TEXT
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DateTime as DATETIME, TEXT
 from sqlalchemy.orm import relationship
 import datetime
 from api.db import Base

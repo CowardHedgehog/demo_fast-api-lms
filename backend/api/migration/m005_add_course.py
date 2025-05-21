@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 import api.models.course as course_model
 import datetime
 
-def add_course(db: AsyncSession):
+async def add_course(db: AsyncSession):
   rows = [
     course_model.Course(
       id = 1,
@@ -16,6 +16,5 @@ def add_course(db: AsyncSession):
       is_active = True
     )
   ]
-  for row in rows:
-    db.add(row)
-  db.flush()
+  db.add_all(rows)
+  await db.flush()

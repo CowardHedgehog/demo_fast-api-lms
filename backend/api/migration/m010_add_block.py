@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 import api.models.block as block_model
 
-def add_block(db:AsyncSession):
+async def add_block(db:AsyncSession):
   rows = [
     block_model.Block(
       id = 1,
@@ -19,6 +19,5 @@ def add_block(db:AsyncSession):
       origin_content_id = 2
     ),
   ]
-  for row in rows:
-    db.add(row)
-  db.flush()
+  db.add_all(rows)
+  await db.flush()

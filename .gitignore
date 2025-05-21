@@ -17,3 +17,6 @@ components.d.ts
 
 # .logを無視
 *.log
+
+# .envを無視
+.env

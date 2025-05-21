@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 import api.models.page_group as page_group_model
 from datetime import datetime
 
-def add_page_group(db:AsyncSession):
+async def add_page_group(db:AsyncSession):
   rows = [
     page_group_model.PageGroup(
       id = 1,
@@ -30,6 +30,5 @@ def add_page_group(db:AsyncSession):
       order = 3
     )
   ]
-  for row in rows:
-    db.add(row)
-  db.flush()
+  db.add_all(rows)
+  await db.flush()

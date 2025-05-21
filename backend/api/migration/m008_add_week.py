@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 import api.models.week as week_model
 from datetime import datetime
 
-def add_week(db: AsyncSession):
+async def add_week(db: AsyncSession):
   rows = [
     week_model.Week(
       id = 1,
@@ -14,6 +14,5 @@ def add_week(db: AsyncSession):
       created_by = 1,
     )
   ]
-  for row in rows:
-    db.add(row)
-  db.flush()
+  db.add_all(rows)
+  await db.flush()

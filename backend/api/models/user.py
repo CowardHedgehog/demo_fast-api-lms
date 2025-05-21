@@ -1,5 +1,5 @@
 # ユーザ情報を示すテーブル群
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, Boolean, Date, DATETIME, Float
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, Boolean, Date, DateTime as DATETIME, Float
 from sqlalchemy.orm import relationship
 import datetime
 

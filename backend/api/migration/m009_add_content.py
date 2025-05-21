@@ -3,7 +3,7 @@ from datetime import datetime
 
 import api.models.content as content_model
 
-def add_content(db: AsyncSession):
+async def add_content(db: AsyncSession):
   rows = [
     content_model.Content(
       id = 1,
@@ -126,6 +126,5 @@ def add_content(db: AsyncSession):
       last_updated = datetime(2024,4,1,0,0,0),
     )
   ]
-  for row in rows:
-    db.add(row)
-  db.flush()
+  db.add_all(rows)
+  await db.flush()

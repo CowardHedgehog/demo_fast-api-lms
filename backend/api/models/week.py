@@ -1,5 +1,5 @@
 # 週情報を示すテーブル群
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DATETIME, TEXT
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DateTime as DATETIME, TEXT
 from sqlalchemy.orm import relationship
 
 import datetime
@@ -16,7 +16,7 @@ class Week(Base):
   week_name = Column(String(128), nullable=False, comment='Week名')
   week_num = Column(Integer, nullable=False, comment='第〇週, 第〇回')
   order = Column(Integer, default=1, nullable=False, comment='並び順（同週内）')
-  created = Column(DATETIME, default=datetime.datetime.now(ZoneInfo('Asia/Tokyo')), nullable=False, comment='作成日時')
+  created = Column(DATETIME, default=datetime.datetime.now(), nullable=False, comment='作成日時')
   created_by = Column(Integer, ForeignKey('users.id', ondelete="CASCADE"), nullable=False, comment='作成者')
   is_active = Column(Boolean, default=True, nullable=False, comment='週有効化')
   

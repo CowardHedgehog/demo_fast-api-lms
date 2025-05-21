@@ -4,12 +4,12 @@ import api.models.flow_page as flow_page_model
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-def add_choice_question(db:AsyncSession):
+async def add_choice_question(db:AsyncSession):
   rows = [
     flow_page_model.ChoiceQuestion(
       id = 9,
       title = 'Q3',
-      created = datetime.now(ZoneInfo('Asia/Tokyo')),
+      created = datetime.now(),
       page_type = "choice_question",
       page_group = 4,
       order = 1,
@@ -21,6 +21,5 @@ def add_choice_question(db:AsyncSession):
       origin_answer_comment_id = 6,
     )
   ]
-  for row in rows:
-    db.add(row)
-  db.flush()
+  db.add_all(rows)
+  await db.flush()

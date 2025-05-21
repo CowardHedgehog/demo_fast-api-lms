@@ -3,7 +3,7 @@ import datetime
 
 import api.models.subject as subject_model
 
-def add_subject(db: AsyncSession):
+async def add_subject(db: AsyncSession):
   rows = [
     subject_model.Subject(
       id = 1,
@@ -14,6 +14,5 @@ def add_subject(db: AsyncSession):
       is_active = True
     ),
   ]
-  for row in rows:
-    db.add(row)
-  db.flush()
+  db.add_all(rows)
+  await db.flush()

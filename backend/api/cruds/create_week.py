@@ -36,6 +36,12 @@ import traceback
 import re
 import uuid
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+#Backend URL
+BACKEND_URL = os.getenv('BACKEND_URL')
 class YamlFormatter():
   # 初期設定
   def __init__(self, files: List[week_schema.RegisterWeekRequest], flow_list, page_list):
@@ -309,7 +315,7 @@ async def add_week_file(db: AsyncSession, user_with_grant: user_schema.UserWithG
       content = re.sub(rf"\[(.*?)\]\s*\(\s*flow/{id_in_yml}\s*\)", rf"<div class='box'><p>[\1](Flow/{flow_id})</p></div>", content)
     # imageの取得設定 (image/{image_name}) -> ![contentsimage](http://~/get_image/{image_id})
     for image_id, image_name in id_in_image_name.items():
-      content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage](http://localhost:8000/get_image/{image_id})", content)
+      content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage]({BACKEND_URL}/get_image/{image_id})", content)
     image_name_to_id = {v: k for k, v in id_in_image_name.items()}
     content = image_crud.replace_images_with_options(content, image_name_to_id)
     # pageへのリンク設定 (page/{week_num}/{order}/{block_page}) -> (../{week_id}/{block_page})
@@ -371,7 +377,7 @@ async def add_flow(db: AsyncSession, week_id: int, flow_dict: dict):
   return row.id
 
 async def add_flow_grant(db: AsyncSession, flow_id: int, user_id: int):
-  new_flow_grant = flow_schema.FlowGrantCreate(user_id=user_id, flow_id=flow_id, start_date_time=datetime.datetime.now(ZoneInfo('Asia/Tokyo')), end_date_time=datetime.datetime.now(ZoneInfo('Asia/Tokyo'))+datetime.timedelta(days=365), read_answer=True, update_answer=True, delete_answer=True)
+  new_flow_grant = flow_schema.FlowGrantCreate(user_id=user_id, flow_id=flow_id, start_date_time=datetime.datetime.now(), end_date_time=datetime.datetime.now()+datetime.timedelta(days=365), read_answer=True, update_answer=True, delete_answer=True)
   row = flow_model.FlowGrant(**new_flow_grant.dict())
   db.add(row)
   await db.flush()
@@ -416,9 +422,9 @@ async def add_flowpage(db: AsyncSession, flowpage: dict, id_in_image_name: dict,
   hint_content = flowpage['hint_comment']
   answer_content = flowpage['answer_comment']
   for image_id, image_name in id_in_image_name.items():
-    flow_content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage](http://localhost:8000/get_image/{image_id})", flow_content)
-    hint_content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage](http://localhost:8000/get_image/{image_id})", hint_content)
-    answer_content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage](http://localhost:8000/get_image/{image_id})", answer_content)
+    flow_content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage]({BACKEND_URL}/get_image/{image_id})", flow_content)
+    hint_content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage]({BACKEND_URL}/get_image/{image_id})", hint_content)
+    answer_content = re.sub(f"\(\s*image/{image_name}\s*\)", f"![contentsimage]({BACKEND_URL}/get_image/{image_id})", answer_content)
   image_name_to_id = {v: k for k, v in id_in_image_name.items()}
   flow_content = image_crud.replace_images_with_options(flow_content, image_name_to_id)
   hint_content = image_crud.replace_images_with_options(hint_content, image_name_to_id)

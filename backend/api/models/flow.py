@@ -1,5 +1,5 @@
 # フロー情報を示すテーブル群
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DATETIME, TIME
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DateTime as DATETIME, TIME
 from sqlalchemy.orm import relationship
 
 from datetime import datetime, timezone
@@ -15,7 +15,7 @@ class Flow(Base):
   id_in_yml = Column(String(256), nullable=False, comment='yml内でのid')
   week_id = Column(Integer, ForeignKey('weeks.id', ondelete='CASCADE'), nullable=False, comment='対応するweek_id')
   title = Column(String(128), nullable=False, comment='演習問題名')
-  created = Column(DATETIME, default=datetime.now(ZoneInfo('Asia/Tokyo')))
+  created = Column(DATETIME, default=datetime.now())
   welcome_page_content_id = Column(Integer, ForeignKey('contents.id', ondelete='CASCADE'), nullable=False, comment='演習前コンテンツid')
   completion_page_content_id = Column(Integer, ForeignKey('contents.id', ondelete='CASCADE'), nullable=False, comment='演習後コンテンツid')
 
