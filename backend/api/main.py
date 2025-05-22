@@ -28,13 +28,17 @@ tags_metadata = [
 
 app = FastAPI()
 
+
+VERCEL_PREVIEW_BACKEND_ORIGIN_REGEX = r"^https://demo-fast-api-lms-[a-zA-Z0-9]+\.vercel\.app$"
+VERCEL_PREVIEW_FRONTEND_ORIGIN_REGEX = r"^https://demo-fast-api-lmsfrontend-[a-zA-Z0-9]+\.vercel\.app$"
+
 origins = [
-  os.getenv("FRONTEND_URL"),
-  os.getenv("BACKEND_URL"),
+  VERCEL_PREVIEW_FRONTEND_ORIGIN_REGEX,
+  VERCEL_PREVIEW_BACKEND_ORIGIN_REGEX,
 ]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins_regex=origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
