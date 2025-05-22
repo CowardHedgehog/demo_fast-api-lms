@@ -20,7 +20,7 @@ const tab = ref(1)
 
 // function
 const get_week_origin_content = (page) => {
-  axios.get(`http://localhost:8000/get_week_origin_content/${props.course_id}/${props.week_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_week_origin_content/${props.course_id}/${props.week_id}`, {withCredentials: true}).then(function(response){
     origin_content.value = response.data.block
     image_dict.value = response.data.image
     flow_dict.value = response.data.flow
@@ -37,7 +37,7 @@ const update_week_content = (content_id, origin_content_id, page) => {
   const params = {'course_id': props.course_id, 'week_id': props.week_id, 'content_id': content_id, 'origin_content_id': origin_content_id, 'content': content.value}
   console.log(JSON.stringify(params))
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-  axios.post('http://localhost:8000/update_week_content', params, config).then(function(response){
+  axios.post('https://demo-fast-api-lms.vercel.app/update_week_content', params, config).then(function(response){
     console.log(response.data)
     get_week_origin_content(page)
   })
@@ -50,7 +50,7 @@ const content_replace = (content) => {
   })
   image_dict.value.forEach(image => {
     const regex2 = new RegExp(`\\(\\s*image/${image['name']}\\s*\\)`, 'g')
-    content = content.replace(regex2, `![contentsimage](http://localhost:8000/get_image/${image['id']})`)
+    content = content.replace(regex2, `![contentsimage](https://demo-fast-api-lms.vercel.app/get_image/${image['id']})`)
 
     const regex3 = new RegExp(`\\[\\s*image/${image['name']}(.*?)\\s*\\]`, 'g')
     content = content.replace(regex3, (_, optionsStr) => {
@@ -60,7 +60,7 @@ const content_replace = (content) => {
       const widthAttr = widthMatch ? ` width='${widthMatch[1]}'` : ''
       const heightAttr = heightMatch ? ` height='${heightMatch[1]}'` : ''
 
-      return `<img src='http://localhost:8000/get_image/${image.id}'${widthAttr}${heightAttr} />`
+      return `<img src='https://demo-fast-api-lms.vercel.app/get_image/${image.id}'${widthAttr}${heightAttr} />`
     })
   })
   const weekNumOrderToWeekId = {};

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const URL = 'http://localhost:8000'
+const URL = 'https://demo-fast-api-lms.vercel.app'
 const DEBUG = true
 const config = {Headers: {'Content-Type': 'application/json'}, withCredentials: true}
 

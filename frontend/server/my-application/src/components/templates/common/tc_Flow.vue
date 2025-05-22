@@ -20,7 +20,7 @@ const user_ability = ref()
 
 // function
 const get_flow = () => {
-  axios.get(`http://localhost:8000/get_flow/${props.flow_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_flow/${props.flow_id}`, {withCredentials: true}).then(function(response){
     flow.value = response.data
     console.log(flow.value)
   })

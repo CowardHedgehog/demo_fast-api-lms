@@ -94,7 +94,7 @@ const line_extractGrades = (data) => {
 
 const get_student_score = async () => {
   try {
-    const response = await axios.get(`http://localhost:8000/get_flow_session_student_score/${props.course_id}`, { withCredentials: true });
+    const response = await axios.get(`https://demo-fast-api-lms.vercel.app/get_flow_session_student_score/${props.course_id}`, { withCredentials: true });
     if (response.data) {
       data.value = response.data;
       extractGrades(data.value);
@@ -197,7 +197,7 @@ const session_error = ref(false)
 
 // function
 const home_profile = () => {
-  axios.get('http://localhost:8000/home_profile', {withCredentials: true}).then(function(response){
+  axios.get('https://demo-fast-api-lms.vercel.app/home_profile', {withCredentials: true}).then(function(response){
     user_info.value = response.data
   }).catch(
     function(error){

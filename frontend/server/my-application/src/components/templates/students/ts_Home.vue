@@ -15,7 +15,7 @@ const courses = ref([])
 
 // function
 const get_courses = () => {
-  axios.get('http://localhost:8000/get_courses', {withCredentials: true}).then(function(response){
+  axios.get('https://demo-fast-api-lms.vercel.app/get_courses', {withCredentials: true}).then(function(response){
     console.log(response.data)
     courses.value = response.data
   })

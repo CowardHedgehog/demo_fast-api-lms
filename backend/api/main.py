@@ -30,6 +30,7 @@ app = FastAPI()
 
 origins = [
   os.getenv("FRONTEND_URL"),
+  os.getenv("BACKEND_URL"),
 ]
 app.add_middleware(
     CORSMiddleware,

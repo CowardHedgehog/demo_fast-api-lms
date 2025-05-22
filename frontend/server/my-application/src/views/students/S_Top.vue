@@ -101,7 +101,7 @@ const steps = [
 ]
 
 const get_courses = () => {
-  axios.get('http://localhost:8000/get_courses', {withCredentials: true}).then(function(response){
+  axios.get('https://demo-fast-api-lms.vercel.app/get_courses', {withCredentials: true}).then(function(response){
     courses.value = response.data
   })
 }
@@ -118,7 +118,7 @@ const addGoal = () => {
   };
 
   const config = {headers: { 'Content-Type': 'application/json' },withCredentials: true};
-  axios.post('http://localhost:8000/add_goal', params, config)
+  axios.post('https://demo-fast-api-lms.vercel.app/add_goal', params, config)
     .then(response => {
       console.log('Response:', response.data);
     })
@@ -146,14 +146,14 @@ const toggleCompletion = (index) => {
     completed : goal.completed
   };
   const config = {headers: { 'Content-Type': 'application/json' },withCredentials: true};
-  axios.post('http://localhost:8000/toggle_completed', params,config,)
+  axios.post('https://demo-fast-api-lms.vercel.app/toggle_completed', params,config,)
 };
 
 const deletegoal = (index) => {
   const goal = notgoal.value[index];
   const params = {goal_id : goal.goal_id}
   const config = {headers: { 'Content-Type': 'application/json' },withCredentials: true};
-  axios.delete('http://localhost:8000/delete_goal', { data: params, ...config })
+  axios.delete('https://demo-fast-api-lms.vercel.app/delete_goal', { data: params, ...config })
   notgoal.value.splice(index, 1)
 }
 
@@ -165,13 +165,13 @@ const goaltoggleCompletion = (index) => {
     completed : goal.completed
   };
   const config = {headers: { 'Content-Type': 'application/json' },withCredentials: true};
-  axios.post('http://localhost:8000/toggle_completed', params,config,)
+  axios.post('https://demo-fast-api-lms.vercel.app/toggle_completed', params,config,)
 };
 
 const fetch_goal = () =>{
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
   try{
-    axios.get('http://localhost:8000/get_goal',config, { withCredentials: true }).then(response => {
+    axios.get('https://demo-fast-api-lms.vercel.app/get_goal',config, { withCredentials: true }).then(response => {
       goals.value = response.data
     })
   }catch (error) {
@@ -181,7 +181,7 @@ const fetch_goal = () =>{
 
 const fetch_not_goal = () =>{
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-  axios.get('http://localhost:8000/get_not_goal',config, { withCredentials: true }).then(response => {
+  axios.get('https://demo-fast-api-lms.vercel.app/get_not_goal',config, { withCredentials: true }).then(response => {
     notgoal.value = response.data
   })
 }
@@ -194,7 +194,7 @@ const openrank = () =>{
 
 const fetch_point = () => {
   const config = {headers: { 'Content-Type': 'application/json' },withCredentials: true};
-  axios.get('http://localhost:8000/get_point', config, { withCredentials: true }).then(response => {
+  axios.get('https://demo-fast-api-lms.vercel.app/get_point', config, { withCredentials: true }).then(response => {
     points.value = response.data
   })
 }
@@ -215,7 +215,7 @@ const stopPolling = () => {
 
 const fetch_high_pointer = () =>{
   const config = {headers: { 'Content-Type': 'application/json' },withCredentials: true};
-  axios.get('http://localhost:8000/get_high_pointer', config, { withCredentials: true }).then(response => {
+  axios.get('https://demo-fast-api-lms.vercel.app/get_high_pointer', config, { withCredentials: true }).then(response => {
     high_pointer.value = response.data;
     console.log(high_pointer.value)
   })
@@ -233,14 +233,14 @@ const opengoals = () => {
 
 const fetch_user_name = () => {
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-  axios.get('http://localhost:8000/user_name', config, { withCredentials: true }).then(response => {
+  axios.get('https://demo-fast-api-lms.vercel.app/user_name', config, { withCredentials: true }).then(response => {
   name.value =  response.data
   })
 }
 
 const fetch_login_day = () => {
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-  axios.post('http://localhost:8000/login_num',config, { withCredentials: true })
+  axios.post('https://demo-fast-api-lms.vercel.app/login_num',config, { withCredentials: true })
     .then(response => {
       login.value = response.data
     })
@@ -258,10 +258,10 @@ const fetch_login_day = () => {
 }
 
 const fetch_progress = () => {
-  axios.get('http://localhost:8000/get_courses', { withCredentials: true }).then(response => {
+  axios.get('https://demo-fast-api-lms.vercel.app/get_courses', { withCredentials: true }).then(response => {
     course_id.value =  response.data.map(course => course.course_id);
     const progressPromises = course_id.value.map(course_id => 
-      axios.get(`http://localhost:8000/get_progress/${course_id}`, { withCredentials: true })
+      axios.get(`https://demo-fast-api-lms.vercel.app/get_progress/${course_id}`, { withCredentials: true })
     );
     Promise.all(progressPromises)
       .then(responses => {
@@ -351,7 +351,7 @@ const chartOptions = {
 
 const showWelcomeDialog = computed(() => {
   const config = {headers: { 'Content-Type': 'application/json' },withCredentials: true};
-  axios.get('http://localhost:8000/get_nickname',config,{ withCredentials: true }).then(response =>
+  axios.get('https://demo-fast-api-lms.vercel.app/get_nickname',config,{ withCredentials: true }).then(response =>
     nickname.value = response.data
   )
   if(nickname.value === "" && welcome_dialog.value){
@@ -391,7 +391,7 @@ const arrangedRanking = () => {
 };
 
 const home_profile = () => {
-  axios.get('http://localhost:8000/home_profile', { withCredentials: true }).then(response => {
+  axios.get('https://demo-fast-api-lms.vercel.app/home_profile', { withCredentials: true }).then(response => {
     user_info.value = response.data
   }).catch(error => {
     if (error.response?.status === 401) {

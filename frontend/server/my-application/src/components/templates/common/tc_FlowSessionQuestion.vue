@@ -32,7 +32,7 @@ const page_type = shallowRef({'SingleTextQuestion': SingleTextQuestion, 'Multipl
 
 // function
 const get_flowpage = (page_i) => {
-  axios.get(`http://localhost:8000/get_flowpage/${props.flow_session_id}/${page_i}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_flowpage/${props.flow_session_id}/${page_i}`, {withCredentials: true}).then(function(response){
     console.log(response.data)
     flowpage.value = response.data
     page_content.value = response.data.page_content
@@ -41,7 +41,7 @@ const get_flowpage = (page_i) => {
   })
 }
 const get_blank_answer = (page_i) => {
-  axios.get(`http://localhost:8000/get_blank_answer/${props.flow_session_id}/${page_i}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_blank_answer/${props.flow_session_id}/${page_i}`, {withCredentials: true}).then(function(response){
     // console.log(response.data)
     blank_answers.value = response.data
   })
@@ -66,7 +66,7 @@ const go_flow_completion_page = () => {
 const finish_flow_session = () => {
   const params = {flow_session_id: props.flow_session_id}
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-  axios.post(`http://localhost:8000/finish_flow_session`, params, config).then(function(response){
+  axios.post(`https://demo-fast-api-lms.vercel.app/finish_flow_session`, params, config).then(function(response){
     // console.log(response.data)
     go_flow_completion_page()
   })

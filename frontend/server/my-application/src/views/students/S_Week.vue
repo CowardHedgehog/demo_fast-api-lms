@@ -26,7 +26,7 @@ const props = defineProps({
 // function
 const home_profile = () => {
   axios
-    .get("http://localhost:8000/home_profile", { withCredentials: true })
+    .get("https://demo-fast-api-lms.vercel.app/home_profile", { withCredentials: true })
     .then(function (response) {
       user_info.value = response.data;
     })

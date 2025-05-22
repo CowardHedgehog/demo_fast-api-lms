@@ -21,7 +21,7 @@ const setdialog = computed({
   set: (newVal) => emit('update:dialog', newVal)
 })
 const get_hint = () => {
-  axios.get(`http://localhost:8000/get_flowpage_hint/${props.flow_session_id}/${props.page}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_flowpage_hint/${props.flow_session_id}/${props.page}`, {withCredentials: true}).then(function(response){
     // console.log(response.data)
     text.value = response.data.content
 })}

@@ -15,7 +15,7 @@ const update_answer = ref()
 
 // function
 const get_week = () => {
-  axios.get(`http://localhost:8000/get_week/${props.week_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_week/${props.week_id}`, {withCredentials: true}).then(function(response){
     // console.log(response.data)
     week_name.value = response.data.week_name
     week_num.value = response.data.week_num
@@ -31,7 +31,7 @@ const update_week = () => {
     order: order.value
   }
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-  axios.post(`http://localhost:8000/update_week`, params, config).then(function(response){
+  axios.post(`https://demo-fast-api-lms.vercel.app/update_week`, params, config).then(function(response){
     console.log(response.data)
     get_week()
   })
@@ -41,7 +41,7 @@ const delete_week = () => {
     week_id: props.week_id
   }
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-  axios.post(`http://localhost:8000/delete_week`, params, config).then(function(response){
+  axios.post(`https://demo-fast-api-lms.vercel.app/delete_week`, params, config).then(function(response){
     console.log(response.data)
     router.push({name: 'T_Course', params: {course_id: props.course_id}})
   })

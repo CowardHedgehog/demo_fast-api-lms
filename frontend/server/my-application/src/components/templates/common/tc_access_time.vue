@@ -28,7 +28,7 @@ const postAccessTime = () => {
     }
     const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
     console.log(params)
-    axios.post('http://localhost:8000/add_access_history', params, config).then(function(response){
+    axios.post('https://demo-fast-api-lms.vercel.app/add_access_history', params, config).then(function(response){
     console.log(response.data)
 })}
 

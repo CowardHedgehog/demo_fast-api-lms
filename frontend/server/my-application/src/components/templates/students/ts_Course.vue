@@ -18,13 +18,13 @@ const sw = ref(false)
 
 // function
 const get_course_info = () => {
-  axios.get(`http://localhost:8000/get_course_info/${props.course_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_course_info/${props.course_id}`, {withCredentials: true}).then(function(response){
     console.log(response.data)
     course_info.value = response.data
   })
 }
 const get_weeks = () => {
-  axios.get(`http://localhost:8000/get_weeks/${props.course_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_weeks/${props.course_id}`, {withCredentials: true}).then(function(response){
     console.log(response.data)
     weeks.value = response.data
   })

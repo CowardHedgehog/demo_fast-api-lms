@@ -40,7 +40,7 @@ const applyTheme = () => {
   }
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
   
-  axios.post('http://localhost:8000/register_theme', params,config, { withCredentials: true })
+  axios.post('https://demo-fast-api-lms.vercel.app/register_theme', params,config, { withCredentials: true })
     .then(response => {
       console.log('レスポンスデータ:', response.data)
     })
@@ -54,7 +54,7 @@ const applyTheme = () => {
 const fetchThemeFromDB = () => {
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
   try {
-    axios.get('http://localhost:8000/get_theme', config).then(response => {
+    axios.get('https://demo-fast-api-lms.vercel.app/get_theme', config).then(response => {
       const data = response.data;
       console.log('レスポンスデータ:', data);
       theme.global.name.value = data;

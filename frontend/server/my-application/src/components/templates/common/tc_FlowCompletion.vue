@@ -20,12 +20,12 @@ const completion_page_content = ref("")
 
 // function
 const get_flow_info = () => {
-  axios.get(`http://localhost:8000/get_flow_info/${props.flow_session_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_flow_info/${props.flow_session_id}`, {withCredentials: true}).then(function(response){
     // console.log(response.data)
     flow_title.value = response.data.flow_title
 })}
 const get_flow_completion_page = () => {
-  axios.get(`http://localhost:8000/get_flow_completion_page/${props.flow_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_flow_completion_page/${props.flow_id}`, {withCredentials: true}).then(function(response){
     // console.log(response)
     completion_page_content.value = response.data.content
 })}

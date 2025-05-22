@@ -22,7 +22,7 @@ const is_add = ref(false)
 
 // function
 const get_users = () => {
-  axios.get('http://localhost:8000/get_users', {withCredentials: true}).then(function(response){
+  axios.get('https://demo-fast-api-lms.vercel.app/get_users', {withCredentials: true}).then(function(response){
     users.value = response.data
     console.log(users.value)
   })
@@ -34,7 +34,7 @@ const add_user = () => {
     const params = {'username': add_username.value, 'email': add_email.value, 'password': add_password.value, 'kind_name': add_kind_name.value}
     // console.log(JSON.stringify(params))
     const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-    axios.post('http://localhost:8000/add_user', params, config).then(function(response){
+    axios.post('https://demo-fast-api-lms.vercel.app/add_user', params, config).then(function(response){
       console.log(response.data)
       if(response.data.success){
         is_add.value = true
@@ -91,7 +91,7 @@ const add_fileusers = () => {
     }
     // console.log(JSON.stringify(params))
     const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-    axios.post('http://localhost:8000/add_users', params, config).then(function(response){
+    axios.post('https://demo-fast-api-lms.vercel.app/add_users', params, config).then(function(response){
       console.log(response.data)
       if(response.data.success){
         is_add.value = true

@@ -25,7 +25,7 @@ const add_grant_teacher = (user_list) => {
   const params = {'course_id': props.course_id, 'user_list': user_list}
   console.log(JSON.stringify(params))
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-  axios.post('http://localhost:8000/update_grant_teacher', params, config).then(function(response){
+  axios.post('https://demo-fast-api-lms.vercel.app/update_grant_teacher', params, config).then(function(response){
     console.log(response.data)
     emit('reload_teacher')
   })

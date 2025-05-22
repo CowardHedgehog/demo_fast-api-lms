@@ -27,7 +27,7 @@ const time = ref()
 
 // function
 const get_week_content = (page) => {
-  axios.get(`http://localhost:8000/get_week_content/${props.week_id}/${page}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_week_content/${props.week_id}/${page}`, {withCredentials: true}).then(function(response){
     console.log(response.data)
     week.value = response.data
     content.value = markdownToHtml(week.value.content)

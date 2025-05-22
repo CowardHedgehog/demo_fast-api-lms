@@ -18,7 +18,7 @@ const shared_courses = ref([])
 
 // function
 const get_courses = () => {
-  axios.get(`http://localhost:8000/get_created_courses/${props.subject_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_created_courses/${props.subject_id}`, {withCredentials: true}).then(function(response){
     console.log(response.data)
     created_courses.value = response.data.created
     shared_courses.value = response.data.shared

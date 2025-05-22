@@ -20,19 +20,19 @@ const props = defineProps({
 
 // function
 const get_course = () => {
-  axios.get(`http://localhost:8000/get_course_info/${props.course_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_course_info/${props.course_id}`, {withCredentials: true}).then(function(response){
     update_answer.value = response.data.update_answer
   })
 }
 const get_taking_students = () => {
-  axios.get(`http://localhost:8000/get_taking_students/${props.course_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_taking_students/${props.course_id}`, {withCredentials: true}).then(function(response){
     console.log(response.data)
     registered_students.value = response.data.registered
     unregistered_students.value = response.data.unregistered
   })
 }
 const get_grant_teachers = () => {
-  axios.get(`http://localhost:8000/get_grant_teachers/${props.course_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_grant_teachers/${props.course_id}`, {withCredentials: true}).then(function(response){
     console.log(response.data)
     registered_teachers.value = response.data.registered
     unregistered_teachers.value = response.data.unregistered

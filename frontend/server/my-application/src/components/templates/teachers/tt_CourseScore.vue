@@ -59,7 +59,7 @@ const extractGradesByExercise = (data) => {
 
 const get_teacher_score = async () => {
   try {
-    const response =await axios.get(`http://localhost:8000/get_flow_session_teacher_score/${props.course_id}`, { withCredentials: true })
+    const response =await axios.get(`https://demo-fast-api-lms.vercel.app/get_flow_session_teacher_score/${props.course_id}`, { withCredentials: true })
     console.log("APIのレスポンスデータ:", response.data)
     apiResponseData.value = response.data
   } catch (error) {
@@ -166,7 +166,7 @@ const chartOptions = ref({
 })
 
 const home_profile = () => {
-  axios.get('http://localhost:8000/home_profile', { withCredentials: true }).then(function(response){
+  axios.get('https://demo-fast-api-lms.vercel.app/home_profile', { withCredentials: true }).then(function(response){
     user_info.value = response.data
   }).catch(function(error){
     if(error.response?.status == 401) { session_error.value = true }

@@ -24,7 +24,7 @@ const delete_taking_students = (user_list) => {
   const params = {'course_id': props.course_id, 'user_list': user_list}
   console.log(JSON.stringify(params))
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-  axios.post('http://localhost:8000/delete_taking_student', params, config).then(function(response){
+  axios.post('https://demo-fast-api-lms.vercel.app/delete_taking_student', params, config).then(function(response){
     console.log(response.data)
     emit('reload_student')
   })

@@ -19,7 +19,7 @@ const welcome_page_content = ref("")
 
 
 const get_welcome_page_content = () => {
-  axios.get(`http://localhost:8000/get_flow_welcome_page/${props.flow_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_flow_welcome_page/${props.flow_id}`, {withCredentials: true}).then(function(response){
     welcome_page_content.value = response.data.content
   })
 }
@@ -30,7 +30,7 @@ const move_week = () => {
 const start_new_flow_session = () => {
   const params = {"flow_id": props.flow_id}
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-  axios.post(`http://localhost:8000/start_new_flow_session`, params, config).then(function(response){
+  axios.post(`https://demo-fast-api-lms.vercel.app/start_new_flow_session`, params, config).then(function(response){
     console.log(response.data)
     if(response.data.start_success){
       if(props.create){ router.push({name:'T_FlowSession', params: {course_id: props.course_id, week_id: props.week_id, flow_id: props.flow_id, flow_session_id: response.data.flow_session_id, page: 1}})}

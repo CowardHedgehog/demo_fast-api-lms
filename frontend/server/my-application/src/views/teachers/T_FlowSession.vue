@@ -25,7 +25,7 @@ const num_of_pages = ref()
 
 // function
 const home_profile = () => {
-  axios.get('http://localhost:8000/home_profile', {withCredentials: true}).then(function(response){
+  axios.get('https://demo-fast-api-lms.vercel.app/home_profile', {withCredentials: true}).then(function(response){
     // console.log(response.data)
     user_info.value = response.data
   }).catch(
@@ -36,7 +36,7 @@ const home_profile = () => {
   )
 }
 const get_flow_info = () => {
-  axios.get(`http://localhost:8000/get_flow_info/${props.flow_session_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_flow_info/${props.flow_session_id}`, {withCredentials: true}).then(function(response){
     // console.log(response.data)
     flow_title.value = response.data.flow_title
     num_of_pages.value = response.data.num_of_pages

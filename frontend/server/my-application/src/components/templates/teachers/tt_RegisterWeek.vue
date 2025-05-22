@@ -38,7 +38,7 @@ const register_week = () => {
       'week_files': files.value
     }
     const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-    axios.post(`http://localhost:8000/register_week`, params, config).then(function(response){
+    axios.post(`https://demo-fast-api-lms.vercel.app/register_week`, params, config).then(function(response){
       console.log(response.data)
       if(response.data.success) move_to_course()
       else {

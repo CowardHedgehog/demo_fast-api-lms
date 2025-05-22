@@ -15,7 +15,7 @@ const images = ref([])
 
 // function
 const get_images = () => {
-    axios.get(`http://localhost:8000/get_images/${props.week_id}`, {withCredentials: true}).then(function(response){
+    axios.get(`https://demo-fast-api-lms.vercel.app/get_images/${props.week_id}`, {withCredentials: true}).then(function(response){
     // console.log(response.data)
     images.value = response.data
     console.log(images.value)
@@ -23,7 +23,7 @@ const get_images = () => {
 }
 
 const delete_image = (id) => {
-  axios.delete(`http://localhost:8000/image/${id}`, {withCredentials: true}).then(function(response){
+  axios.delete(`https://demo-fast-api-lms.vercel.app/image/${id}`, {withCredentials: true}).then(function(response){
     console.log(response.data)
     get_images()
   })
@@ -43,7 +43,7 @@ get_images()
         <v-row align="center" justify="center" dense>
           <v-col v-for='image in images' :key='image.id' cols='12' md='6'>
             <v-card class='mx-auto' variant='outlined'>
-              <v-img :src='`http://localhost:8000/get_image/${image.id}`' width='200' height="200" class="mx-auto" />
+              <v-img :src='`https://demo-fast-api-lms.vercel.app/get_image/${image.id}`' width='200' height="200" class="mx-auto" />
               <v-divider thickness="3"></v-divider>
               <v-card-subtitle class='text-black d-flex justify-center'>{{ image.name }}</v-card-subtitle>
               <v-card-actions class='d-flex justify-center'>

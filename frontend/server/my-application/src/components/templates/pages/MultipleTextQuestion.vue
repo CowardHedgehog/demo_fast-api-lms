@@ -33,7 +33,7 @@ const register_answer = () => {
   }
   console.log(params)
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-  axios.post(`http://localhost:8000/register_blank_answer`, params, config).then(function(response){
+  axios.post(`https://demo-fast-api-lms.vercel.app/register_blank_answer`, params, config).then(function(response){
     var blanklength = props.page_content.answer_column_content.length
     let cnt = 0
     for(let i = 0; i < response.data.length; i++){if(response.data[i]["is_correct"] == true) cnt++}

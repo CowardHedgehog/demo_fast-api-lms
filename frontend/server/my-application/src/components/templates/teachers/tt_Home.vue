@@ -12,7 +12,7 @@ const outside_subjects = ref([])
 
 // function
 const get_subjects = () => {
-  axios.get('http://localhost:8000/get_subjects', {withCredentials: true}).then(function(response){
+  axios.get('https://demo-fast-api-lms.vercel.app/get_subjects', {withCredentials: true}).then(function(response){
     console.log(response.data)
     during_subjects.value = response.data.during_result
     outside_subjects.value = response.data.outside_result

@@ -20,7 +20,7 @@ const move_S_Home = () => router.push({name: 'S_Home'})
 const move_S_UserSetting = () => router.push({name: 'S_UserSetting'})
 const openManual = () => window.open("https://drive.google.com/file/d/1xaJvoquj3cUJIc7RjSeD4cv1Cur5XV1C/view?usp=sharing", '_blank')
 const logout =() => {
-  axios.post('http://localhost:8000/logout',{}, {withCredentials: true}).then(function(response){
+  axios.post('https://demo-fast-api-lms.vercel.app/logout',{}, {withCredentials: true}).then(function(response){
     console.log(response.data)
     moveLogin()
   }).catch(

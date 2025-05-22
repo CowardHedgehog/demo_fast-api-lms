@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const getUser = () =>{
   const user_info = {}
-  axios.get('http://localhost:8000/home_profile', {withCredentials: true}).then(function(response){
+  axios.get('https://demo-fast-api-lms.vercel.app/home_profile', {withCredentials: true}).then(function(response){
     console.log(response.data)
     user_info = response.data
     return { user_info }

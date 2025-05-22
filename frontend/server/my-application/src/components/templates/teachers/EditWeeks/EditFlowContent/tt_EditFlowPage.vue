@@ -179,7 +179,7 @@ const update_content = () => {
     }
     console.log(params)
     const config = {Headers: {'Content-Type': 'application/json'}, withCredentials: true}
-    axios.post('http://localhost:8000/update_flowpage_content', params, config).then(function(response){
+    axios.post('https://demo-fast-api-lms.vercel.app/update_flowpage_content', params, config).then(function(response){
         console.log(response.data)
         read_week_flowpage()
     })

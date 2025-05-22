@@ -25,7 +25,7 @@ const session_error = ref(false);
 // function
 const home_profile = () => {
   axios
-    .get("http://localhost:8000/home_profile", { withCredentials: true })
+    .get("https://demo-fast-api-lms.vercel.app/home_profile", { withCredentials: true })
     .then(function (response) {
       user_info.value = response.data;
     })
@@ -39,7 +39,7 @@ const home_profile = () => {
 };
 const get_week = () => {
   axios
-    .get(`http://localhost:8000/get_week/${props.week_id}`, {
+    .get(`https://demo-fast-api-lms.vercel.app/get_week/${props.week_id}`, {
       withCredentials: true,
     })
     .then(function (response) {
@@ -49,7 +49,7 @@ const get_week = () => {
 };
 const get_week_flows = () => {
   axios
-    .get(`http://localhost:8000/get_week_flows/${props.week_id}`, {
+    .get(`https://demo-fast-api-lms.vercel.app/get_week_flows/${props.week_id}`, {
       withCredentials: true,
     })
     .then(function (response) {

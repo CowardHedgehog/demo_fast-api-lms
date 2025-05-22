@@ -14,7 +14,7 @@ const flow_session_history = ref()
 
 // function
 const get_flow_session_history = () => {
-  axios.get(`http://localhost:8000/get_flow_session_history/${props.course_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_flow_session_history/${props.course_id}`, {withCredentials: true}).then(function(response){
     console.log(response.data)
     flow_session_history.value = response.data
     console.log(flow_session_history.value)

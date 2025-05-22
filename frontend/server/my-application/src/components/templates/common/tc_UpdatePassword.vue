@@ -43,7 +43,7 @@ const update_password = async () => {
       "new_password": new_pswd.value
     }
     const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-    const response = await axios.post(`http://localhost:8000/update_password`, params, config)
+    const response = await axios.post(`https://demo-fast-api-lms.vercel.app/update_password`, params, config)
     
     // APIからのレスポンスを確認
     if (response.data.success) {

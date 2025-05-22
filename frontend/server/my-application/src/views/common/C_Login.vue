@@ -36,11 +36,11 @@ const login = () => {
   };
   const params = { email: email.value, password: password.value };
   axios
-    .post("http://localhost:8000/token", params, config)
+    .post("https://demo-fast-api-lms.vercel.app/token", params, config)
     .then(function (response) {
       console.log(response);
       axios
-        .get("http://localhost:8000/home_profile", { withCredentials: true })
+        .get("https://demo-fast-api-lms.vercel.app/home_profile", { withCredentials: true })
         .then(function (response) {
           //console.log(response)
           if (response.data.create) {
@@ -61,11 +61,11 @@ const login = () => {
     })
     .catch(function (error) {
       axios
-        .post("http://localhost:8000/token", params, config)
+        .post("https://demo-fast-api-lms.vercel.app/token", params, config)
         .then(function (response) {
           console.log(response);
           axios
-            .get("http://localhost:8000/home_profile", {
+            .get("https://demo-fast-api-lms.vercel.app/home_profile", {
               withCredentials: true,
             })
             .then(function (response) {

@@ -24,7 +24,7 @@ const create_course = () => {
   }
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
   console.log(params)
-  axios.post(`http://localhost:8000/create_course`, params, config).then(function(response){
+  axios.post(`https://demo-fast-api-lms.vercel.app/create_course`, params, config).then(function(response){
     console.log(response.data)
     dialog.value = response.data.success
     setTimeout(() => {

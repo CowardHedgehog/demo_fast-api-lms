@@ -31,7 +31,7 @@ const go_flow_completion_page = () => {
 const finish_flow_session = () => {
   const params = {flow_session_id: props.flow_session_id}
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
-  axios.post(`http://localhost:8000/finish_flow_session`, params, config).then(function(response){
+  axios.post(`https://demo-fast-api-lms.vercel.app/finish_flow_session`, params, config).then(function(response){
     console.log(response.data)
     go_flow_completion_page()
   }).catch(function(error){

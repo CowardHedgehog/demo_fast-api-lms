@@ -27,7 +27,7 @@ const updateNickname = async () => {
       withCredentials: true
     }
     
-    await axios.post('http://localhost:8000/set_nickname', params, config)
+    await axios.post('https://demo-fast-api-lms.vercel.app/set_nickname', params, config)
     emit('nickname-updated', nickname.value)
   } catch (e) {
     console.error('Error setting nickname:', e)

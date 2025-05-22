@@ -54,7 +54,7 @@ const add_image = () => {
     file.imgdata = result
     const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
     console.log(file)
-    axios.post('http://localhost:8000/image', file, config).then(function(response){
+    axios.post('https://demo-fast-api-lms.vercel.app/image', file, config).then(function(response){
       console.log(response.data)
       setDialog.value = false
     reloadImages()

@@ -32,7 +32,7 @@ const selectedNotification = ref(null)
 
 // function
 const get_notifications = () => {
-  axios.get('http://localhost:8000/announcements_list', {withCredentials: true}).then(function(response){
+  axios.get('https://demo-fast-api-lms.vercel.app/announcements_list', {withCredentials: true}).then(function(response){
     const currentTime = dayjs.tz()
     
     // is_activeがtrueで、かつ現在時刻が開始日時と終了日時の間にあるお知らせのみをフィルタリング
@@ -55,7 +55,7 @@ const showNotification = async (notification) => {
   if (!notification.is_read) {
     try {
       await axios.post(
-        `http://localhost:8000/announcements/${notification.id}/read`,
+        `https://demo-fast-api-lms.vercel.app/announcements/${notification.id}/read`,
         {},
         { withCredentials: true }
       )

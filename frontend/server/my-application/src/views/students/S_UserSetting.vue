@@ -21,14 +21,14 @@ const get_nickname = () => {
     withCredentials: true,
   };
   axios
-    .get("http://localhost:8000/get_nickname", config, {
+    .get("https://demo-fast-api-lms.vercel.app/get_nickname", config, {
       withCredentials: true,
     })
     .then((response) => (nickname.value = response.data));
 };
 const home_profile = () => {
   axios
-    .get("http://localhost:8000/home_profile", { withCredentials: true })
+    .get("https://demo-fast-api-lms.vercel.app/home_profile", { withCredentials: true })
     .then(function (response) {
       console.log(response.data);
       user_info.value = response.data;

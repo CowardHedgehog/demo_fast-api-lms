@@ -12,7 +12,7 @@ const keyword = ref()
 
 // function
 const get_syllabus_info = () => {
-  axios.get(`http://localhost:8000/get_syllabus_info/${props.course_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_syllabus_info/${props.course_id}`, {withCredentials: true}).then(function(response){
     console.log(response.data)
     syllabus_info.value = response.data
     keyword.value = response.data.subject_keyword.split(',')

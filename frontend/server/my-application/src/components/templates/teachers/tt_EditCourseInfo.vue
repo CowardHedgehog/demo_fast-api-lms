@@ -17,7 +17,7 @@ const delete_answer = ref()
 const dialog = ref()
 
 const get_course = () => {
-  axios.get(`http://localhost:8000/get_course_info/${props.course_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_course_info/${props.course_id}`, {withCredentials: true}).then(function(response){
     console.log(response.data)
     course_name.value = response.data.course_name
     start_date_time.value = splitDate(response.data.start_date_time)
@@ -37,7 +37,7 @@ const update_course = () => {
   }
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
   console.log(params)
-  axios.post(`http://localhost:8000/update_course`, params, config).then(function(response){
+  axios.post(`https://demo-fast-api-lms.vercel.app/update_course`, params, config).then(function(response){
     console.log(response.data)
     dialog.value = response.data.success
     get_course()
@@ -52,7 +52,7 @@ const delete_course = () => {
   }
   const config = {headers: {'Content-Type': 'application/json'}, withCredentials: true}
   console.log(params)
-  axios.post(`http://localhost:8000/delete_course`, params, config).then(function(response){
+  axios.post(`https://demo-fast-api-lms.vercel.app/delete_course`, params, config).then(function(response){
     console.log(response.data)
     router.push({name: 'T_Home'})
   })

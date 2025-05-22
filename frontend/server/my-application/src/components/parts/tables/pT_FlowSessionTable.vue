@@ -20,7 +20,7 @@ const flow_sessions = ref({})
 
 // function
 const get_flow_sessions = () => {
-  axios.get(`http://localhost:8000/get_flow_sessions/${props.flow_id}`, {withCredentials: true}).then(function(response){
+  axios.get(`https://demo-fast-api-lms.vercel.app/get_flow_sessions/${props.flow_id}`, {withCredentials: true}).then(function(response){
   flow_sessions.value = response.data
   // console.log(flow.value)
   })

@@ -61,7 +61,7 @@ const formData = computed({
 
 // function
 const get_user_info = () => {
-  axios.get('http://localhost:8000/home_profile', {withCredentials: true})
+  axios.get('https://demo-fast-api-lms.vercel.app/home_profile', {withCredentials: true})
     .then(response => {
       user_info.value = response.data
     })
@@ -73,7 +73,7 @@ const get_user_info = () => {
 }
 
 const get_notifications = () => {
-  axios.get('http://localhost:8000/announcements_list_all', {withCredentials: true})
+  axios.get('https://demo-fast-api-lms.vercel.app/announcements_list_all', {withCredentials: true})
     .then(response => {
       notifications.value = response.data
       console.log('All notifications loaded:', notifications.value)
@@ -95,7 +95,7 @@ const createNotification = async () => {
       is_active: true
     }
     
-    await axios.post('http://localhost:8000/announcements', 
+    await axios.post('https://demo-fast-api-lms.vercel.app/announcements', 
       notificationData,
       { 
         headers: {'Content-Type': 'application/json'},
@@ -132,7 +132,7 @@ const updateNotification = async () => {
     }
     
     const response = await axios.put(
-      `http://localhost:8000/announcements/${selectedNotification.value.id}`, 
+      `https://demo-fast-api-lms.vercel.app/announcements/${selectedNotification.value.id}`, 
       {
         title: selectedNotification.value.title,
         content: selectedNotification.value.content,
@@ -160,7 +160,7 @@ const deleteNotification = async (notification) => {
   if (confirm('このお知らせを削除してもよろしいですか？')) {
     try {
       await axios.delete(
-        `http://localhost:8000/announcements/${notification.id}`,
+        `https://demo-fast-api-lms.vercel.app/announcements/${notification.id}`,
         { withCredentials: true }
       )
       await get_notifications()
@@ -193,7 +193,7 @@ const deleteItem = (item) => {
 
 const confirmDelete = async () => {
   try {
-    await axios.delete(`http://localhost:8000/announcements/${itemToDelete.value.id}`, {
+    await axios.delete(`https://demo-fast-api-lms.vercel.app/announcements/${itemToDelete.value.id}`, {
       withCredentials: true
     })
     deleteDialog.value = false
